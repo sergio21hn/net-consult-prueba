@@ -2,7 +2,31 @@ import {createAll, cleanConsole} from './data';
 const companies = createAll();
 
 cleanConsole(1, companies);
-console.log('---- EXAMPLE 1 --- ', 'Put here your function');
+
+function organize(companies) {
+  companies.forEach(function(element) {
+    element.users.forEach(function(person) {
+      if (person.firstName == undefined) {
+        person.firstName = '';
+      }
+      if (person.lastName == undefined) {
+        person.lastName = '';
+      }
+      person.firstName = capitalizeFirstLetter(person.firstName);
+      person.lastName = capitalizeFirstLetter(person.lastName);
+    });
+    element.name = capitalizeFirstLetter(element.name);
+  });
+
+  function capitalizeFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+
+  return companies;
+}
+
+console.log('---- EXAMPLE 1 --- ', organize(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
